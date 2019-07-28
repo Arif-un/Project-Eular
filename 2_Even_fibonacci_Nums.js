@@ -12,6 +12,7 @@ function fiboEvenSum(n) {
   for (let i = 1; i <= n; i++) {
     let pos = series[i] + series[i - 1]
     pos % 2 === 0 ? sum += pos : 0
+    series.push(pos)
   }
 
   return sum;
