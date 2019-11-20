@@ -2,22 +2,25 @@
 
 Find the sum of all the primes below n. */
 
-function isPrime(num) {
-    for (let i = 2; i <= num / 2; i++) {
-        if (num % i == 0) {
-            return false
+
+function primeSummation(n) {
+    const sieve = new Array(n).fill(true)
+    let sum = 0
+    for (let i = 2; i < Math.sqrt(n); i++) {
+        if (sieve[i]) {
+            for (let j = Math.pow(i, 2); j < n; j += i) {
+                sieve[j] = false
+            }
         }
     }
-    return true
-}
-function primeSummation(n) {
-    let sum = 0
-    for (let i = 2; i < n; i++) {
-        if (isPrime(i)) {
+    for (let i = 2; i < sieve.length; i++) {
+        if (sieve[i]) {
             sum += i
         }
     }
+
     return sum;
 }
 
-console.log(primeSummation(140759));
+
+console.log(primeSummation(10));
